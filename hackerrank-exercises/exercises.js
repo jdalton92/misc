@@ -336,3 +336,56 @@ function maximumPerimeterTriangle(sticks) {
 function beautifulBinaryString(b) {
   return (b.match(/010/g) || []).length;
 }
+
+// The Love Letter Mistery
+function theLoveLetterMystery(s) {
+  let count = 0;
+  let middleChar = Math.floor(s.length / 2);
+  let oppositeChar;
+
+  for (let i = 0; i < middleChar; i++) {
+    oppositeChar = s.length - 1 - i;
+    count += Math.abs(s.charCodeAt(i) - s.charCodeAt(oppositeChar));
+  }
+
+  return count;
+}
+
+// Gemstones
+function gemstones(arr) {
+  let combined = arr.join("");
+  let unique = [...new Set(combined)];
+  return unique.filter((ch) => arr.every((str) => str.includes(ch))).length;
+}
+
+// Game of Thrones - I
+function gameOfThrones(s) {
+  let uniqueChar = new Set();
+  for (let i = 0; i < s.length; i++) {
+    uniqueChar.add(s.charAt(i));
+  }
+
+  let oddCount = 0;
+
+  for (let char of uniqueChar) {
+    let count = 0;
+
+    for (let i = 0; i < s.length; i++) {
+      if (char === s[i]) {
+        count++;
+      }
+    }
+
+    if (count % 2 === 1) {
+      oddCount++;
+    }
+
+    if (s.length % 2 === 0 && oddCount > 0) {
+      return "NO";
+    } else if (oddCount > 1) {
+      return "NO";
+    }
+  }
+
+  return "YES";
+}
