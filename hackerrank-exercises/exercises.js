@@ -298,3 +298,41 @@ function marcsCakewalk(calorie) {
 
   return minMiles;
 }
+
+// Maximum perimeter triangle
+function maximumPerimeterTriangle(sticks) {
+  let max = 0;
+  let sides = "";
+  let maxSide = 0;
+
+  for (let i = 0; i < sticks.length - 2; i++) {
+    for (let j = i + 1; j < sticks.length - 1; j++) {
+      for (let k = j + 1; k < sticks.length; k++) {
+        const a = sticks[i];
+        const b = sticks[j];
+        const c = sticks[k];
+
+        if (a < b + c && b < c + a && c < a + b) {
+          if (a + b + c > max) {
+            max = a + b + c;
+            sides = [a, b, c];
+            maxSide = Math.max(a, b, c);
+          } else if (a + b + c === max && Math.max(a, b, c) > maxSide) {
+            sides = [a, b, c];
+            maxSide = Math.max(a, b, c);
+          }
+        }
+      }
+    }
+  }
+  if (max > 0) {
+    return sides.sort();
+  } else {
+    return [-1];
+  }
+}
+
+// Beautiful Binary String
+function beautifulBinaryString(b) {
+  return (b.match(/010/g) || []).length;
+}
