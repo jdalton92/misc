@@ -389,3 +389,23 @@ function gameOfThrones(s) {
 
   return "YES";
 }
+
+// Funny String
+function funnyString(s) {
+  const sArr = s.split("");
+  const reverseSArr = [...sArr].reverse();
+  let sArrDiff = [];
+  let reverseSArrDiff = [];
+
+  for (let i = 0; i < s.length - 1; i++) {
+    sArrDiff.push(Math.abs(sArr[i].charCodeAt() - sArr[i + 1].charCodeAt()));
+    reverseSArrDiff.push(
+      Math.abs(reverseSArr[i].charCodeAt() - reverseSArr[i + 1].charCodeAt())
+    );
+  }
+
+  if (JSON.stringify(sArrDiff) === JSON.stringify(reverseSArrDiff)) {
+    return "Funny";
+  }
+  return "Not Funny";
+}
