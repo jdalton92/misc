@@ -409,3 +409,19 @@ function funnyString(s) {
   }
   return "Not Funny";
 }
+
+// Pangrams
+function pangrams(s) {
+  const sortedSet = new Set(
+    s
+      .toLowerCase()
+      .split("")
+      .filter((ch) => ch !== " ")
+      .sort()
+  );
+
+  if (sortedSet.size === 26) {
+    return "pangram";
+  }
+  return "not pangram";
+}
