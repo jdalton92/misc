@@ -425,3 +425,70 @@ function pangrams(s) {
   }
   return "not pangram";
 }
+
+// Mars exploration
+function marsExploration(s) {
+  const sArr = s.split("");
+  let count = 0;
+  for (let i = 0; i < s.length; i = i + 3) {
+    if (sArr[i] !== "S") {
+      count++;
+    }
+    if (sArr[i + 1] !== "O") {
+      count++;
+    }
+    if (sArr[i + 2] !== "S") {
+      count++;
+    }
+  }
+  return count;
+}
+
+// HackerRank in a String
+function hackerrankInString(s) {
+  const target = "hackerrank";
+  let index = 0;
+  let match = 0;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === target[index]) {
+      index++;
+      match++;
+    }
+  }
+  return match === target.length ? "YES" : "NO";
+}
+
+// Weighted Uniform String (Solution Option 1)
+function weightedUniformStrings(s, queries) {
+  const sArr = s
+    .toLowerCase()
+    .split("")
+    .sort()
+    .map((ch) => ch.charCodeAt(0) - 96);
+  let sHash = {};
+  let sSubstringWeights = [];
+  let results = [];
+
+  for (let char of sArr) {
+    sHash[char] = (sHash[char] || 0) + 1;
+  }
+
+  for (let key of Object.keys(sHash)) {
+    for (let i = 1; i < sHash[key] + 1; i++) {
+      sSubstringWeights.push(key * i);
+    }
+  }
+
+  return queries.map((q) => (sSubstringWeights.includes(q) ? "Yes" : "No"));
+}
+
+// Weighted Uniform String (Solution Option 2)
+function weightedUniformStrings(s, queries) {
+  const uniformStrings = s.match(/([a-z])(\1)*/g);
+  const values = uniformStrings.map((s) =>
+    s.split("").map((c, i) => (c.charCodeAt(0) - 96) * (i + 1))
+  );
+  const flatValues = [].concat(...values);
+
+  return queries.map((q) => (flatValues.includes(q) ? "Yes" : "No"));
+}
