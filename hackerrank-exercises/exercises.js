@@ -492,3 +492,18 @@ function weightedUniformStrings(s, queries) {
 
   return queries.map((q) => (flatValues.includes(q) ? "Yes" : "No"));
 }
+
+// Caesar Cipher
+function caesarCipher(s, k) {
+  let cipher = "";
+  for (let i = 0; i < s.length; i++) {
+    if (s[i].match(/[A-Za-z]/i) && s[i] === s[i].toUpperCase()) {
+      cipher += String.fromCharCode(((s.charCodeAt(i) + k - 65) % 26) + 65);
+    } else if (s[i].match(/[A-Za-z]/i) && s[i] === s[i].toLowerCase()) {
+      cipher += String.fromCharCode(((s.charCodeAt(i) + k - 97) % 26) + 97);
+    } else {
+      cipher += s[i];
+    }
+  }
+  return cipher;
+}
