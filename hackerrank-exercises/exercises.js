@@ -507,3 +507,63 @@ function caesarCipher(s, k) {
   }
   return cipher;
 }
+
+// Separate the Numbers
+function separateNumbers(s) {
+  if (s.length === 1) {
+    console.log("NO");
+    return;
+  }
+
+  let subString = "";
+  let incrementedString = "";
+  let incrementedNum = 0;
+  let isValid = false;
+
+  for (let i = 16; i <= s.length / 2; i++) {
+    // Create an string incrementing numbers by 1
+    // and then check if the string equals the input
+    subString = s.substring(0, i);
+    incrementedNum = BigInt(parseInt(subString, 10)) + BigInt(1);
+    incrementedString = subString;
+
+    while (incrementedString.length < s.length) {
+      incrementedString = `${incrementedString}${incrementedNum.toString()}`;
+      incrementedNum++;
+    }
+
+    if (incrementedString === s) {
+      isValid = true;
+      break;
+    }
+  }
+
+  console.log(isValid ? `YES ${subString}` : "NO");
+}
+
+// Palindrome Index
+function palindromeIndex(s) {
+  let i = 0;
+  let j = s.length - 1;
+
+  while (i < j && s[i] === s[j]) {
+    ++i;
+    --j;
+  }
+
+  if (i >= j) return -1;
+
+  let checkRight = true;
+  let checkLeft = true;
+  let skipLeftIndex = i;
+  let skipRightIndex = j;
+
+  while (i < j && (checkRight || checkLeft)) {
+    checkLeft = checkLeft && s[i + 1] === s[j];
+    checkRight = checkRight && s[i] === s[j - 1];
+    ++i;
+    --j;
+  }
+
+  return checkLeft ? skipLeftIndex : checkRight ? skipRightIndex : -1;
+}
