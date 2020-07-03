@@ -567,3 +567,27 @@ function palindromeIndex(s) {
 
   return checkLeft ? skipLeftIndex : checkRight ? skipRightIndex : -1;
 }
+
+// Sherlock and the Valid String
+function isValid(s) {
+  let sHash = {};
+  for (let char of s.split("")) {
+    sHash[char] = (sHash[char] || 0) + 1;
+  }
+
+  const values = Object.values(sHash);
+  return values
+    .map((num) => num - Math.min(...Object.values(sHash)))
+    .reduce((num, sum) => num + sum, 0) > 1
+    ? "NO"
+    : "YES";
+}
+
+// String Construction
+function stringConstruction(s) {
+  let sHash = {};
+  for (let char of s.split("")) {
+    sHash[char] = (sHash[char] || 0) + 1;
+  }
+  return Object.keys(sHash).length;
+}
