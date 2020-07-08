@@ -591,3 +591,34 @@ function stringConstruction(s) {
   }
   return Object.keys(sHash).length;
 }
+
+// Common child
+function commonChild(s1, s2) {
+  let matrix = [];
+  for (let i = 0; i < s1.length; i++) {
+    matrix.push(new Array(s2.length).fill(0));
+    if (s1[i] === s2[0] || s1[0] === s2[0]) {
+      matrix[i][0] = 1;
+    }
+  }
+  for (let i = 0; i < s2.length; i++) {
+    if (s2[i] === s1[0] || s1[0] === s2[0]) {
+      matrix[0][i] = 1;
+    }
+  }
+
+  for (let i = 1; i < s1.length; i++) {
+    for (let j = 1; j < s2.length; j++) {
+      if (s1[i] === s2[j]) {
+        matrix[i][j] = matrix[i - 1][j - 1] + 1;
+      } else {
+        matrix[i][j] = Math.max(
+          matrix[i - 1][j - 1],
+          matrix[i][j - 1],
+          matrix[i - 1][j]
+        );
+      }
+    }
+  }
+  return matrix[s1.length - 1][s2.length - 1];
+}
