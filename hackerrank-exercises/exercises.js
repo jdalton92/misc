@@ -622,3 +622,36 @@ function commonChild(s1, s2) {
   }
   return matrix[s1.length - 1][s2.length - 1];
 }
+
+// Bear and Steady Gene
+function steadyGene(gene) {
+  const geneArr = gene.split("");
+  const n = gene.length;
+  const targetCount = gene.length / 4;
+  let geneHash = {};
+  let substringLength = n;
+  let index = 0;
+
+  for (let gene of geneArr) {
+    geneHash[gene] = (geneHash[gene] || 0) + 1;
+  }
+
+  for (let i = 0; i < n; i++) {
+    while (
+      geneHash["A"] > targetCount ||
+      geneHash["C"] > targetCount ||
+      geneHash["T"] > targetCount ||
+      geneHash["G"] > targetCount
+    ) {
+      if (index === n) {
+        return substringLength;
+      }
+      geneHash[gene[index]]--;
+      index++;
+    }
+    substringLength = Math.min(substringLength, index - i);
+    geneHash[gene[i]]++;
+  }
+
+  return substringLength;
+}
