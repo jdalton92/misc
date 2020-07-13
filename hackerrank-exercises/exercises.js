@@ -655,3 +655,8 @@ function steadyGene(gene) {
 
   return substringLength;
 }
+
+// Big Sorting
+function bigSorting(unsorted) {
+  return unsorted.sort((a, b) => a - b);
+}
