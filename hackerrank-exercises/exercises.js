@@ -660,3 +660,8 @@ function steadyGene(gene) {
 function bigSorting(unsorted) {
   return unsorted.sort((a, b) => a - b);
 }
+
+// intro Tutorial
+function introTutorial(V, arr) {
+  return arr.indexOf(V);
+}
