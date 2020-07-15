@@ -665,3 +665,26 @@ function bigSorting(unsorted) {
 function introTutorial(V, arr) {
   return arr.indexOf(V);
 }
+
+// insert sort 1
+function insertionSort1(n, arr) {
+  let num = arr[arr.length - 1];
+  let flag = false;
+
+  for (let j = arr.length - 2; j > -1; j--) {
+    if (arr[j] > num) {
+      arr[j + 1] = arr[j];
+      console.log(arr.join(" "));
+    } else {
+      arr[j + 1] = num;
+      console.log(arr.join(" "));
+      flag = true;
+      break;
+    }
+  }
+
+  if (!flag) {
+    arr[0] = num;
+    console.log(arr.join(" "));
+  }
+}
