@@ -666,7 +666,7 @@ function introTutorial(V, arr) {
   return arr.indexOf(V);
 }
 
-// insert sort 1
+// insertion sort 1
 function insertionSort1(n, arr) {
   let num = arr[arr.length - 1];
   let flag = false;
@@ -685,6 +685,19 @@ function insertionSort1(n, arr) {
 
   if (!flag) {
     arr[0] = num;
+    console.log(arr.join(" "));
+  }
+}
+
+// insertion sort 2
+function insertionSort2(n, arr) {
+  for (let i = 1; i < arr.length; i++) {
+    let tmp = arr[i];
+    let j = i - 1;
+    for (j; j >= 0 && arr[j] > tmp; j--) {
+      arr[j + 1] = arr[j];
+    }
+    arr[j + 1] = tmp;
     console.log(arr.join(" "));
   }
 }
