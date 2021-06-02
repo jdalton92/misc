@@ -104,8 +104,12 @@ alias dev="cd ~/development"
 alias hr="honcho run python manage.py"
 alias ht="honcho run python manage.py test --verbosity 2 --parallel"
 alias htk="honcho run python manage.py test --verbosity 2 --keepdb --parallel"
-alias pm="python manage.py"
+alias hc="honcho run python manage.py bootstrap --create-users"
+alias pm="docker-compose exec web python manage.py"
 
 dev
 
 export EDITOR=/usr/bin/vim
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+export PATH="${HOME}/.local/bin:$PATH"

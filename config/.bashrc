@@ -123,6 +123,7 @@ bash -c zsh
 alias dev="cd ~/development"
 alias hr='honcho run python manage.py'
 alias ht='honcho run coverage run manage.py test'
+alias pm='docker-compose exec web python manage.py'
 
 dev
 
@@ -131,3 +132,7 @@ eval "$(dircolors ~/.dircolors)"
 export PS1="\u: \w\n$ "
 export DOCKER_HOST=tcp://localhost:2375
 export PATH="${HOME}/.local/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
