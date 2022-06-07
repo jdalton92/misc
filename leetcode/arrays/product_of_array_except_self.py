@@ -40,10 +40,10 @@ class Solution:
         ans = [1 for _ in range(length)]
         for i in range(1, length):
             ans[i] = ans[i - 1] * nums[i - 1]
-        R = 1
-        for i in range(len(ans) - 1, -1, -1):
-            ans[i] = ans[i] * R
-            R *= nums[i]
+        product = 1
+        for i in range(length - 1, -1, -1):
+            ans[i] = ans[i] * product
+            product *= nums[i]
         return ans
 
 
