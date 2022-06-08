@@ -10,7 +10,7 @@ https://leetcode.com/problems/product-of-array-except-self/
 
 
 class BruteForceSolution:
-    """Brute force solutions.
+    """Brute force solution.
 
     O(n^2) time complexity
     O(n) space complexity
@@ -29,7 +29,7 @@ class BruteForceSolution:
 
 
 class Solution:
-    """Efficient solutions.
+    """Efficient solution.
 
     O(n) time complexity
     O(1) space complexity
@@ -38,11 +38,15 @@ class Solution:
     def product_except_self(self, nums):
         length = len(nums)
         ans = [1 for _ in range(length)]
+
+        # Each item multiply by items to it's LHS
         for i in range(1, length):
             ans[i] = ans[i - 1] * nums[i - 1]
+
+        # Each item multiply by it's to it's RHS
         product = 1
         for i in range(length - 1, -1, -1):
-            ans[i] = ans[i] * product
+            ans[i] *= product
             product *= nums[i]
         return ans
 
