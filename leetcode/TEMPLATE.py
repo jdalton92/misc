@@ -5,8 +5,8 @@
 """
 
 
-class BruteForceSolution:
-    """Brute force solution.
+class Solution:
+    """Solution.
 
     O(...) time complexity
     O(...) space complexity
@@ -18,5 +18,5 @@ class BruteForceSolution:
 
 if __name__ == "__main__":
     nums = [...]
-    obj = BruteForceSolution()
+    obj = Solution()
     print(obj.method(nums))
