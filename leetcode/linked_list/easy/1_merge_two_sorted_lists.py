@@ -13,6 +13,9 @@ class ListNode:
         self.val = val
         self.next = next
 
+    def __repr__(self):
+        return str(self.val)
+
 
 class IterationSolution:
     """Iteration Solution.
@@ -61,8 +64,19 @@ class RecursiveSolution:
             return list_2
 
 
+def list_to_linked_list(list):
+    while list:
+        return ListNode(list.pop(0), list_to_linked_list(list))
+    return None
+
+
 if __name__ == "__main__":
-    list_1 = [1, 2, 4]
-    list_2 = [1, 3, 4]
-    obj = IterationSolution()
-    print(obj.merge_two_lists(list_1, list_2))
+    nums_1 = [1, 2, 4]
+    nums_2 = [1, 3, 4]
+    head_1 = list_to_linked_list(nums_1)
+    head_2 = list_to_linked_list(nums_2)
+    instance = IterationSolution()
+    new_head = instance.merge_two_lists(head_1, head_2)
+    while new_head:
+        print(new_head)
+        new_head = new_head.next

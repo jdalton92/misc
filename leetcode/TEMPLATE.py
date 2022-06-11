@@ -18,5 +18,5 @@ class Solution:
 
 if __name__ == "__main__":
     nums = [...]
-    obj = Solution()
-    print(obj.method(nums))
+    instance = Solution()
+    print(instance.method(nums))

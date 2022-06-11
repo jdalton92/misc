@@ -13,6 +13,9 @@ class ListNode:
         self.val = val
         self.next = next
 
+    def __repr__(self):
+        return str(self.val)
+
 
 class SetSolution:
     """Set Solution.
@@ -57,7 +60,17 @@ class CycleFindingSolution:
         return True
 
 
+def list_to_linked_list(list):
+    while list:
+        return ListNode(list.pop(0), list_to_linked_list(list))
+    return None
+
+
 if __name__ == "__main__":
-    head = [3, 2, 0, -4]
-    obj = SetSolution()
-    print(obj.has_cycle(head))
+    nums = [3, 2, 0, -4]
+    head = list_to_linked_list(nums)
+    instance = SetSolution()
+    new_head = instance.has_cycle(head)
+    while new_head:
+        print(new_head)
+        new_head = new_head.next

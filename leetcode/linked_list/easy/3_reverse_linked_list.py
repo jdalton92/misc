@@ -9,6 +9,9 @@ class ListNode:
         self.val = val
         self.next = next
 
+    def __repr__(self):
+        return str(self.val)
+
 
 class IterativeSolution:
     """Iterative Solution.
@@ -49,7 +52,17 @@ class RecursiveSolution:
         return previous_node
 
 
+def list_to_linked_list(list):
+    while list:
+        return ListNode(list.pop(0), list_to_linked_list(list))
+    return None
+
+
 if __name__ == "__main__":
-    head = [1, 2, 3, 4, 5]
-    obj = IterativeSolution()
-    print(obj.reverse_list(head))
+    nums = [1, 2, 3, 4, 5]
+    head = list_to_linked_list(nums)
+    instance = IterativeSolution()
+    new_head = instance.reverse_list(head)
+    while new_head:
+        print(new_head)
+        new_head = new_head.next
