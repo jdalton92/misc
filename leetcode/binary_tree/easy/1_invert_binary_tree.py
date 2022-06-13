@@ -15,7 +15,7 @@ class TreeNode:
         return str(self.val)
 
 
-def list_to_binary_tree(list, index=1):
+def list_to_binary_tree(list):
     # TODO: fix this function
     if not list:
         return None
