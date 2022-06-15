@@ -11,14 +11,31 @@ https://leetcode.com/problems/flood-fill/
 """
 
 
-class Solution:
-    """Solution.
+class DepthFirstSearchSolution:
+    """Depth First Search Solution.
 
-    O(...) time complexity
-    O(...) space complexity
+    O(n) time complexity where n is the number of pixels
+    O(n) space complexity where n is the number of pixels
     """
 
     def flood_fill(self, image, sr, sc, color):
+        height = len(image)
+        width = len(image[0])
+        starting_color = image[sr][sc]
+
+        def fill(sr, sc):
+            if image[sr][sc] == starting_color:
+                image[sr][sc] = color
+                if sr - 1 >= 0:
+                    fill(sr - 1, sc)
+                if sr + 1 < height:
+                    fill(sr + 1, sc)
+                if sc - 1 >= 0:
+                    fill(sr, sc - 1)
+                if sc + 1 < width:
+                    fill(sr, sc + 1)
+
+        fill(sr, sc)
         return image
 
 
@@ -27,5 +44,5 @@ if __name__ == "__main__":
     sr = 1
     sc = 1
     color = 2
-    instance = Solution()
-    print(instance.method(image, sr, sc, color))
+    instance = DepthFirstSearchSolution()
+    print(instance.flood_fill(image, sr, sc, color))
