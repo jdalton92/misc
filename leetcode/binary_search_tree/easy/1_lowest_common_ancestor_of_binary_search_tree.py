@@ -36,15 +36,66 @@ def print_tree(head):
     print_tree(head.right)
 
 
-class Solution:
-    """Solution.
+class RecursiveSolution:
+    """Recursive Solution.
 
-    O(...) time complexity
-    O(...) space complexity
+    O(n) time complexity
+    O(n) space complexity for worst case (unbalanced tree)
+    O(logn) space complexity for average case (balanced tree)
     """
 
     def lowest_common_ancestor(self, root, p, q):
-        return root
+        parent_val = root.val
+
+        # Value of p
+        p_val = p.val
+
+        # Value of q
+        q_val = q.val
+
+        # If both p and q are greater than parent
+        if p_val > parent_val and q_val > parent_val:
+            return self.lowest_common_ancestor(root.right, p, q)
+        # If both p and q are lesser than parent
+        elif p_val < parent_val and q_val < parent_val:
+            return self.lowest_common_ancestor(root.left, p, q)
+        # We have found the split point, i.e. the LCA node.
+        else:
+            return root
+
+
+class IterativeSolution:
+    """Iterative Solution.
+
+    O(n) time complexity
+    O(1) space complexity
+    """
+
+    def lowest_common_ancestor(self, root, p, q):
+        # Value of p
+        p_val = p.val
+
+        # Value of q
+        q_val = q.val
+
+        # Start from the root node of the tree
+        node = root
+
+        # Traverse the tree
+        while node:
+
+            # Value of current node or parent node.
+            parent_val = node.val
+
+            if p_val > parent_val and q_val > parent_val:
+                # If both p and q are greater than parent
+                node = node.right
+            elif p_val < parent_val and q_val < parent_val:
+                # If both p and q are lesser than parent
+                node = node.left
+            else:
+                # We have found the split point, i.e. the LCA node.
+                return node
 
 
 if __name__ == "__main__":
@@ -52,5 +103,5 @@ if __name__ == "__main__":
     p = 2
     q = 8
     root = list_to_binary_tree(root)
-    instance = Solution()
+    instance = RecursiveSolution()
     print_tree(instance.lowest_common_ancestor(root, p, q))
