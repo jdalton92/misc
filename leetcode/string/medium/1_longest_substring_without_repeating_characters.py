@@ -39,10 +39,11 @@ class SlidingWindowSolutions:
     """
 
     def length_of_longest_substring(self, s):
-        i = 0
         len_s = len(s)
         longest = 0
+        # We map chars to their index
         hash_map = {}
+        i = 0
         for j in range(len_s):
             if s[j] in hash_map:
                 i = max(hash_map[s[j]], i)
